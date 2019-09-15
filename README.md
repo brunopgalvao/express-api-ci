@@ -1,2 +1,2 @@
 # express-api-ci
-This is Express API - Continuous Integration
+Express API - Continuous Integration
