@@ -1,7 +1,7 @@
 const request = require('supertest')
 const app = require('../server.js')
 
-afterAll(() => app.close())
+afterAll(() => res.close())
 
 describe('User API', () => {
     it('should show all users', async (done) => {
