@@ -1,17 +1,24 @@
 const request = require('supertest')
 const app = require('../server.js')
+
 describe('User API', () => {
-    it('should show all users', async () => {
+    it('should show all users', async (done) => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
-        await app.close();
+        .end(function(err, res) {
+            if (err) return done(err);
+            done();
+          });
     }),
     it('should show a user', async () => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        await app.close();
+        .end(function(err, res) {
+            if (err) return done(err);
+            done();
+          });
     }),
     it('should create a new user', async () => {
         const res = await request(app)
@@ -24,7 +31,10 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty('user')
-        await app.close();
+        .end(function(err, res) {
+            if (err) return done(err);
+            done();
+          });
     }),
     it('should update a user', async () => {
         const res = await request(app)
@@ -37,7 +47,10 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        await app.close();
+        .end(function(err, res) {
+            if (err) return done(err);
+            done();
+          });
     }),
     it('should delete a user', async () => {
         const res = await request(app)
@@ -50,6 +63,9 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.text).toEqual("User deleted")
-        await app.close();
+        .end(function(err, res) {
+            if (err) return done(err);
+            done();
+          });
     })
 })
