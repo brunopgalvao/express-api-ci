@@ -1,18 +1,19 @@
 const request = require('supertest')
 const app = require('../server.js')
 
-afterAll(() => res.close())
 
 describe('User API', () => {
     it('should show all users', async (done) => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
+        res.close()
     }),
     it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
+        res.close()
     }),
     it('should create a new user', async (done) => {
         const res = await request(app)
@@ -25,6 +26,7 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty('user')
+        res.close()
     }),
     it('should update a user', async (done) => {
         const res = await request(app)
@@ -37,6 +39,7 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
+        res.close()
     }),
     it('should delete a user', async (done) => {
         const res = await request(app)
@@ -49,5 +52,6 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.text).toEqual("User deleted")
+        res.close()
     })
 })
