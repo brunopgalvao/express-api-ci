@@ -5,13 +5,13 @@ describe('User API', () => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
-        done()
+        await server.close();
     }),
     it('should show a user', async () => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        done()
+        await server.close();
     }),
     it('should create a new user', async () => {
         const res = await request(app)
@@ -24,7 +24,7 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty('user')
-        done()
+        await server.close();
     }),
     it('should update a user', async () => {
         const res = await request(app)
@@ -37,7 +37,7 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        done()
+        await server.close();
     }),
     it('should delete a user', async () => {
         const res = await request(app)
@@ -50,6 +50,6 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.text).toEqual("User deleted")
-        done()
+        await server.close();
     })
 })
