@@ -2,19 +2,17 @@ const request = require('supertest')
 const app = require('../app.js')
 
 describe('User API', () => {
-    it('should show all users', async (done) => {
+    it('should show all users', async () => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
-        console.log(res)
-        res.close()
     }),
-    it('should show a user', async (done) => {
+    it('should show a user', async () => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
     }),
-    it('should create a new user', async (done) => {
+    it('should create a new user', async () => {
         const res = await request(app)
             .post('/api/users')
             .send({
@@ -26,7 +24,7 @@ describe('User API', () => {
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty('user')
     }),
-    it('should update a user', async (done) => {
+    it('should update a user', async () => {
         const res = await request(app)
             .put('/api/users/3')
             .send({
@@ -38,7 +36,7 @@ describe('User API', () => {
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
     }),
-    it('should delete a user', async (done) => {
+    it('should delete a user', async () => {
         const res = await request(app)
             .del('/api/users/3')
             .send({
