@@ -1,13 +1,13 @@
 const request = require('supertest')
 const app = require('../server.js')
 
-afterAll(() => app.close())
-
 describe('User API', () => {
     it('should show all users', async (done) => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
+        console.log(app)
+        app.close()
     }),
     it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
