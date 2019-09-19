@@ -5,20 +5,12 @@ describe('User API', () => {
     it('should show all users', async (done) => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
-        expect(res.body).toHaveProperty('users')
-        end(function(err, res) {
-            if (err) return done(err);
-            done();
-          });
+        expect(res.body, done).toHaveProperty('users')
     }),
     it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
-        expect(res.body).toHaveProperty('user')
-        end(function(err, res) {
-            if (err) return done(err);
-            done();
-          });
+        expect(res.body, done).toHaveProperty('user')
     }),
     it('should create a new user', async (done) => {
         const res = await request(app)
@@ -30,11 +22,7 @@ describe('User API', () => {
                 password: '12345678'
             })
         expect(res.statusCode).toEqual(201)
-        expect(res.body).toHaveProperty('user')
-        end(function(err, res) {
-            if (err) return done(err);
-            done();
-          });
+        expect(res.body, done).toHaveProperty('user')
     }),
     it('should update a user', async (done) => {
         const res = await request(app)
@@ -46,11 +34,7 @@ describe('User API', () => {
                 password: 'abc123'
             })
         expect(res.statusCode).toEqual(200)
-        expect(res.body).toHaveProperty('user')
-        end(function(err, res) {
-            if (err) return done(err);
-            done();
-          });
+        expect(res.body, done).toHaveProperty('user')
     }),
     it('should delete a user', async (done) => {
         const res = await request(app)
@@ -62,10 +46,6 @@ describe('User API', () => {
                 password: 'abc123'
             })
         expect(res.statusCode).toEqual(200)
-        expect(res.text).toEqual("User deleted")
-        end(function(err, res) {
-            if (err) return done(err);
-            done();
-          });
+        expect(res.text, done).toEqual("User deleted")
     })
 })
