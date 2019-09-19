@@ -6,8 +6,8 @@ describe('User API', () => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
-        console.log(app)
-        app.close()
+        console.log(res)
+        res.close()
     }),
     it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
