@@ -6,21 +6,21 @@ describe('User API', () => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('users')
-        .end(function(err, res) {
+        end(function(err, res) {
             if (err) return done(err);
             done();
           });
     }),
-    it('should show a user', async () => {
+    it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        .end(function(err, res) {
+        end(function(err, res) {
             if (err) return done(err);
             done();
           });
     }),
-    it('should create a new user', async () => {
+    it('should create a new user', async (done) => {
         const res = await request(app)
             .post('/api/users')
             .send({
@@ -31,12 +31,12 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty('user')
-        .end(function(err, res) {
+        end(function(err, res) {
             if (err) return done(err);
             done();
           });
     }),
-    it('should update a user', async () => {
+    it('should update a user', async (done) => {
         const res = await request(app)
             .put('/api/users/3')
             .send({
@@ -47,12 +47,12 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.body).toHaveProperty('user')
-        .end(function(err, res) {
+        end(function(err, res) {
             if (err) return done(err);
             done();
           });
     }),
-    it('should delete a user', async () => {
+    it('should delete a user', async (done) => {
         const res = await request(app)
             .del('/api/users/3')
             .send({
@@ -63,7 +63,7 @@ describe('User API', () => {
             })
         expect(res.statusCode).toEqual(200)
         expect(res.text).toEqual("User deleted")
-        .end(function(err, res) {
+        end(function(err, res) {
             if (err) return done(err);
             done();
           });
