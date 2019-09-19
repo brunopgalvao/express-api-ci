@@ -1,16 +1,18 @@
 const request = require('supertest')
 const app = require('../server.js')
 
+afterAll(() => app.close())
+
 describe('User API', () => {
     it('should show all users', async (done) => {
         const res = await request(app).get('/api/users')
         expect(res.statusCode).toEqual(200)
-        expect(res.body, done).toHaveProperty('users')
+        expect(res.body).toHaveProperty('users')
     }),
     it('should show a user', async (done) => {
         const res = await request(app).get('/api/users/3')
         expect(res.statusCode).toEqual(200)
-        expect(res.body, done).toHaveProperty('user')
+        expect(res.body).toHaveProperty('user')
     }),
     it('should create a new user', async (done) => {
         const res = await request(app)
@@ -22,7 +24,7 @@ describe('User API', () => {
                 password: '12345678'
             })
         expect(res.statusCode).toEqual(201)
-        expect(res.body, done).toHaveProperty('user')
+        expect(res.body).toHaveProperty('user')
     }),
     it('should update a user', async (done) => {
         const res = await request(app)
@@ -34,7 +36,7 @@ describe('User API', () => {
                 password: 'abc123'
             })
         expect(res.statusCode).toEqual(200)
-        expect(res.body, done).toHaveProperty('user')
+        expect(res.body).toHaveProperty('user')
     }),
     it('should delete a user', async (done) => {
         const res = await request(app)
@@ -46,6 +48,6 @@ describe('User API', () => {
                 password: 'abc123'
             })
         expect(res.statusCode).toEqual(200)
-        expect(res.text, done).toEqual("User deleted")
+        expect(res.text).toEqual("User deleted")
     })
 })
