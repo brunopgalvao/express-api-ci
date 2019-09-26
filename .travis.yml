@@ -15,3 +15,6 @@ deploy:
   app: express-api-ci-0001
   on:
     repo: brunopgalvao/express-api-ci
+  run:
+    - "heroku run npx sequelize-cli db:migrate"
+    - "heroku run npx sequelize-cli db:seed:all"
